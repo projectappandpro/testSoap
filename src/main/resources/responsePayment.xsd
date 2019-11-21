@@ -1,0 +1,51 @@
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tns2="http://response.common.dto.payment_service.ws.irp.tmbscfinbound"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://response.common.dto.payment_service.ws.irp.tmbscfinbound">
+	<xs:import namespace="http://request.common.dto.payment_service.ws.irp.tmbscfinbound"/>
+	<xs:import
+		namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+
+	<xs:complexType name="ResponseData">
+		<xs:sequence>
+			<xs:element name="bankCode" nillable="true" type="xsd:string" />
+			<xs:element name="responseCode" nillable="true"
+				type="xsd:string" />
+			<xs:element name="responseDetail" nillable="true"
+				type="xsd:string" />
+			<xs:element name="sponsorCode" nillable="true" type="xsd:string" />
+			<xs:element name="trackingNumber" nillable="true"
+				type="xsd:string" />
+			<xs:element name="voucherNumber" nillable="true"
+				type="xsd:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ResponseMessage">
+		<xs:sequence>
+			<xs:element name="operation" nillable="true" type="xsd:string" />
+			<xs:element name="responseData" nillable="true"
+				type="tns2:ResponseData" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="cutReturnMessageResponse">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="paymentServiceReturn" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="paymentServiceResponse">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="paymentServiceReturn" type="tns2:ResponseMessage" />
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>

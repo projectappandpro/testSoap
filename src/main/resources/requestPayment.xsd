@@ -1,0 +1,85 @@
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:tns1="http://request.common.dto.payment_service.ws.irp.tmbscfinbound"
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://request.common.dto.payment_service.ws.irp.tmbscfinbound">
+		<xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+		
+		<xs:complexType name="ArrayOfDocument">
+		  <xs:sequence>
+			<xs:element name="Document" type="tns1:Document" maxOccurs="unbounded" minOccurs="0">
+			</xs:element>
+		  </xs:sequence>
+		</xs:complexType>
+		
+		 <xs:complexType name="Document">
+			    <xs:sequence>
+			      <xs:element type="xs:string" nillable="true" name="docType"/>
+			      <xs:element type="xs:double" name="documentAmt"/>
+			      <xs:element type="xs:string" nillable="true" name="documentAmtFlag"/>
+			      <xs:element type="xs:string" nillable="true" name="documentDate"/>
+			      <xs:element type="xs:string" nillable="true" name="documentNumber"/>
+			      <xs:element type="xs:string" nillable="true" name="dueDate"/>
+			      <xs:element type="xs:double" name="outstandingAmt"/>
+			      <xs:element type="xs:string" nillable="true" name="outstandingAmtFlag"/>
+			    </xs:sequence>
+			  </xs:complexType>
+		
+		<xs:complexType name="Header">
+			<xs:sequence>
+				<xs:element name="bankCode" nillable="true" type="xsd:string" />
+				<xs:element name="customerCode" nillable="true"
+					type="xsd:string" />
+				<xs:element name="paymentAmt" type="xsd:double" />
+				<xs:element name="paymentAmtFlag" nillable="true"
+					type="xsd:string" />
+				<xs:element name="paymentDate" nillable="true"
+					type="xsd:string" />
+				<xs:element name="paymentDetail" nillable="true"
+					type="xsd:string" />
+				<xs:element name="paymentType" nillable="true"
+					type="xsd:string" />
+				<xs:element name="sendDate" nillable="true" type="xsd:string" />
+				<xs:element name="sendTime" nillable="true" type="xsd:string" />
+				<xs:element name="sponsorCode" nillable="true"
+					type="xsd:string" />
+				<xs:element name="totalDocuments" type="xsd:int" />
+				<xs:element name="trackingNumber" nillable="true"
+					type="xsd:string" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:complexType name="RequestData">
+			<xs:sequence>
+				<xs:element name="documents" nillable="true"
+					type="tns1:ArrayOfDocument" />
+				<xs:element name="header" nillable="true" type="tns1:Header" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:complexType name="RequestMessage">
+			<xs:sequence>
+				<xs:element name="operation" nillable="true" type="xsd:string" />
+				<xs:element name="requestData" nillable="true"
+					type="tns1:RequestData" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="cutReturnMessageRequest">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="returnMsg" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="paymentServiceRequest">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="requestMessage" type="tns1:RequestMessage" />
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	
+	</xs:schema>
